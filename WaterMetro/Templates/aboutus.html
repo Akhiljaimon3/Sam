@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 100%;height: 100px;">
+        <a href="{% url 'home'%}"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="menu-home-whitebg">
+            <a class="menu-home-content" href="{% url 'home'%}">Home</a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            {% if request.session.U_id %}
+                <a class="menu-home-content" href="youraccount">Your Account</a>
+            {% else %}
+                <a class="menu-home-content" href="login">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="head-home">
+        <div class="head-home-content">
+            <h1>About Us</h1>
+            <p>Enjoy the pioneering initiative in sustainable urban water transport.</p>
+        </div>
+    </div>
+
+    <div class="home-maincontent">
+        <div class="left-aboutus-content">
+            <p style="font-size: 16px;font-weight: 400;text-align:justify;">Kochi, often referred as the commercial capital of Kerala, is one of the most densely populated district in the state of Kerala. The project is expected to reduce pollution and traffic congestions in the city and also ease access to business areas on the mainland for urban households situated along the Kochi lakeshore. The Kochi water metro project envisages the development of 15 identified routes, connecting 10 islands along a network of routes that span 78 km with a fleet of 78 fast, electrically propelled hybrid ferries plying to 38 jetties. More than 33000 islanders are expected to benefit from the water metro. It is envisaged to be a socially inclusive transport system than being just a transport service with focus on improved livelihoods through commercial property development and tourism-based initiatives. The Kochi Water Metro Project intends to introduce modern, energy efficient, environment friendly and safe boats with low wake and draft characteristics at a high frequency to increase ridership.The Kerala backwaters are a network of brackish lagoons and lakes parallel to the Arabian Sea coast of Kerala state in southern India. Kochi is the largest city in the south Indian state and is less vulnerable to storm surges or cyclones due to its location on the lower west coast of the Indian peninsula.</p>
+        </div>
+        <div class="right-content">
+            <div class="carousel">
+                <img src="{% static 'images/banner1.png' %}" alt="Banner 1" class="active">
+                <img src="{% static 'images/banner2.png' %}" alt="Banner 2">
+                <img src="{% static 'images/banner3.png' %}" alt="Banner 3">
+                <img src="{% static 'images/banner4.png' %}" alt="Banner 4">
+            </div>            
+        </div>
+    </div>
+
+    <div>
+        <h4 style="text-align: center;">INTEGRATED WATER TRANSPORT SYSTEM FOR THE CITY OF KOCHI</h4>
+        <div class="aboutus-seperator"></div><br>
+        <p style="font-size: 16px;font-weight: 400;text-align:justify;margin: 0px 2.5% 2% 2.5%;">The water transport system envisaged for Kochi focuses not only on the ferry services as the mode of public transportation but also envisions a holistic development of the areas being connected by waterways as well as integrating the waterway system as a part of the entire public transport system of the city. Apart from the ferry service development, the project also looks into developing the existing and new roads providing increased access to the jetties and also within the islands, ensuring safety and security to all its users by way of active and well-lit streets, promoting use of small occupancy feeder modes to access the jetties, promoting property development around the jetties and place making. The Kochi Water Metro project has a total value of 819 crores and major part of which is financed under Indo-German Financial Cooperation with a long-term loan agreement of 85 million</p>
+        <img style="width: 24%;position: relative;;left: 38%;margin-bottom: 10px;" src="{% static 'images/home-maincontent-count.png' %}" alt="">
+    </div>
+
+    <div>
+        <h4 style="text-align: center;">WATERWAYS - KOCHI SCENARIO</h4>
+        <div class="aboutus-seperator"></div><br>
+        <p style="font-size: 16px;font-weight: 400;text-align:justify;margin: 0px 2.5% 2% 2.5%;">The Kerala backwaters are a network of brackish lagoons and lakes lying parallel to the Arabian Sea coast (known as the Malabar Coast) of Kerala state in southern India, as well as interconnected canals, rivers, and inlets, a labyrinthine system formed by more than 900 kilometers (560 mi) of waterways. Kochi is the largest city in the south Indian state of Kerala and the second largest along India's western coastline, after Mumbai. In Kochi's case, thanks to its location on the lower west coast of the Indian peninsula, it is less vulnerable to storm surges or cyclones compared to cities on the eastern coast of the country. The city sits within a complex estuarine system comprising Lake Vembanad and the many rivers flowing into the lake, including the Periyar and Muvattupuzha rivers.</p>
+    </div>
+
+    <div>
+        <h4 style="text-align: center;">WATERWAYS - KOCHI SCENARIO</h4>
+        <div class="aboutus-seperator"></div><br>
+        <p style="font-size: 16px;font-weight: 400;text-align:justify;margin: 0px 2.5% 2% 2.5%;">The project is intending to use the inland waterways in and around Kochi the major share of the waterways are - National Waterways ( NW3) - 40%, Cochin Port Trust Waters - 33%, existing routes under irrigation - 20%, other inland waters -7%. The proposed Water Metro Project comprises of fifteen (15) identified routes connecting thirty eight (38) jetties across ten (10) island communities and 2 boatyards. The overall length of the line lengths of these 15 routes is 76.2 line kilo meters. The water depth required (-2 to -2.50m CD) in channels and - 1.50mCD in approach and jetty pockets. Since major part of the channels are already in use, dredging in these are not significant whereas the approaches from the navigational channel to the terminal area constitute the main part of the dredging. The total dredging is estimated to be in the range of 0.65 million cubic meters.</p>
+        <img style="width: 30%;position: relative;;left: 35%;margin-bottom: 10px;" src="{% static 'images/metro-map.png' %}" alt="">
+        <p style="font-size: 16px;font-weight: 400;text-align:justify;margin: 0px 2.5% 2% 2.5%;">There are 15 routes planned as part of this project. These are highlighted in the sketch shown below. The headways shall vary between 10 minutes to 20 minutes across various routes at peak hours. There will be Navigational buoys and night navigational assistance throughout the routes. Water weed and floating waste management is envisaged in this project.</p>
+    </div>
+    
+    <br><br>
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png'%}">
+        <br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="https://www.facebook.com/KochiWaterMetro"><i class="fa fa-facebook"></i></a>
+                <a href="https://instagram.com/kochiwatermetrolimited"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:customercare@watermetro.co.in"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="{% url 'home'%}">Home</a></p>
+            <p><a href="watermetro-terminals-vytilla">Terminals</a></p>
+            <p><a href="watermetro-bookyourjourney">Book Your Journey</a</p>
+            <p><a href="watermetro-aboutus">About Us</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484 - 2846700">0484 - 2846700</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+</body>
+</html>

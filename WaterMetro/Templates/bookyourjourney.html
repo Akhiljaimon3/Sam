@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 100%;height: 100px;">
+        <a href="{% url 'home'%}"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="menu-home-whitebg">
+            <a class="menu-home-content" href="{% url 'home'%}">Home</a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            {% if request.session.U_id %}
+                <a class="menu-home-content" href="watermetro-youraccount">Your Account</a>
+            {% else %}
+                <a class="menu-home-content" href="watermetro-login">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="head-home">
+        <div class="head-home-content">
+            <h1>Know Your Journey</h1>
+            <p>Enjoy the pioneering initiative in sustainable urban water transport.</p>
+        </div>
+    </div>
+    <form action="watermetro-bookyourjourney" method="post">
+        {% csrf_token %}
+        <div class="home-content">
+            <div class="dropdown-container">
+                <p class="travel-label"><b>Where are you travelling to?</b></p>
+                <img src="{% static 'images/from-to.png'%}" alt="">
+                <div class="form-controls">
+                    <select name="location" class="dropdown">
+                        <option value="">Select your location</option>
+                        <option value="Vytilla">Vytilla</option>
+                        <option value="HighCourt">HighCourt</option>
+                        <option value="Vypin">Vypin</option>
+                        <option value="Kakkanad">Kakkanad</option>
+                        <option value="Bolgatty">Bolgatty</option>
+                        <option value="SouthChittoor">South Chittoor</option>
+                        <option value="Chernalloor">Chernalloor</option>
+                        <option value="Eloor">Eloor</option>
+                        <option value="FortKochi">Fort Kochi</option>
+                    </select>
+                    <button type="button" class="interchange-button">⇄</button>
+                    <select name="destination" class="dropdown">
+                        <option value="">Select your destination</option>
+                        <option value="Vytilla">Vytilla</option>
+                        <option value="HighCourt">HighCourt</option>
+                        <option value="Vypin">Vypin</option>
+                        <option value="Kakkanad">Kakkanad</option>
+                        <option value="Bolgatty">Bolgatty</option>
+                        <option value="SouthChittoor">South Chittoor</option>
+                        <option value="Chernalloor">Chernalloor</option>
+                        <option value="Eloor">Eloor</option>
+                        <option value="FortKochi">Fort Kochi</option>
+                    </select>
+                    <button type="submit" class="search-button">Search</button>
+                </div>
+            </div>
+        </div>
+    </form><br>
+
+    {% if no_route %}
+        <img class="no-route-container" src="{% static 'images/no_routes.png'%}" alt="">
+    {% elif rout and detail %}
+    <div class="route_details">
+        <div class="left-route_details">
+            {% for d in detail %}
+            <h5 >Kochi Water Metro</h5><h3 style="color: #00adac;">₹{{ d.fare }}</h3>
+            <img class="icon-route" src="{% static 'images/logo_watermetro.png'%}">
+            <div class="route-info">
+                <h5 class="location">{{ d.location }}</h5>
+                <img class="route-separator" src="{% static 'images/route-seperator.png'%}" alt="">
+                <h5 class="destination">{{ d.destination }}</h5>
+            </div>
+            <h6>Time Taken For Journey:{{ d.travel_time }} Minutes</h6>
+            
+        </div>
+
+        <div class="right-route_details">
+            <img class="banner-route" src="{% static 'images/watermetro_2.png'%}">
+        </div>
+        {% endfor %}
+    </div>
+    <div class="table-container">
+    <table class="routes-table">
+        <thead>
+            <tr>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in rout %}
+            {% for d in detail %}
+            <form action="watermetro-ticketpayment" method="post">
+                {% csrf_token %}
+                <tr>
+                <input value="{{r.id}}" name="x" hidden>
+                <input value="{{d.id}}" name="y" hidden>
+                <td>{{ r.departure|date:'H:i' }}</td>
+                <td>{{ r.Arrival|date:'H:i' }}</td>
+                <td>
+                    {% if r.status is 1 %}
+                        <div class="active-btn" title="{{ r.note }}">active</div>
+                    {% endif %}
+                    {% if r.status is 2 %}
+                        <div class="late" title="{{ r.note }}">Late</div>
+                    {% endif %}
+                    {% if r.status is 3 %}
+                        <div class="cancelled" title="{{ r.note }}">cancelled</div>
+                    {% endif %}
+                    {% if r.status is 4 %}
+                        <div class="inactive" title="{{ r.note }}">inactive</div>
+                    {% endif %}
+                </td>
+                <td>{% if r.status != 3 and r.status != 4 %}<button type="submit" class="book-button">Book Now</button>{% endif %}</td>
+                </tr>
+            </form>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% endif %}
+
+
+    <br><br>
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png'%}">
+        <br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="https://www.facebook.com/KochiWaterMetro"><i class="fa fa-facebook"></i></a>
+                <a href="https://instagram.com/kochiwatermetrolimited"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:customercare@watermetro.co.in"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="{% url 'home'%}">Home</a></p>
+            <p><a href="watermetro-terminals-vytilla">Terminals</a></p>
+            <p><a href="watermetro-bookyourjourney">Book Your Journey</a</p>
+            <p><a href="watermetro-aboutus">About Us</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484 - 2846700">0484 - 2846700</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+</body>
+</html>

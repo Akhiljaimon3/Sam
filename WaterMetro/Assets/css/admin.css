@@ -1,0 +1,415 @@
+html, body {
+    height: auto; 
+    position: static;
+  }
+.admin-home-menu {
+    position: absolute; /* Change from fixed to absolute */
+    top: 5%; /* Adjust as needed for spacing from the top */
+    left: 80%; /* Align to the left side */
+    transform: translateX(0); /* No need to center horizontally */
+    display: flex;
+    align-items: flex-start; /* Align items to the left */
+    padding: 10px; /* Adjust padding as needed */
+    z-index: 4; /* Ensure menu is above other content */
+    justify-content: space-around;
+}
+
+.admin-home-menu a {
+    color: black; /* Text color */
+    text-decoration: none; /* No underline */
+    font-family: Arial, Helvetica, sans-serif; /* Font family */
+    font-size: 107%; /* Font size */
+}
+
+.admin-home-menu a:hover {
+    color: black; /* Ensure color remains the same on hover */
+}
+
+.admin-home-sidemenu {
+    position: absolute; /* Change from fixed to absolute */
+    top: 16%; /* Adjust as needed for spacing from the top */
+    left: 0; /* Align to the left side */
+    background: linear-gradient(to right, #00adac, #00a2b2);
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px; /* Adjust padding as needed */
+    z-index: 3; /* Ensure menu is below other content */
+}
+
+.admin-home-sidemenu a {
+    color: white; /* Text color */
+    text-decoration: none; /* No underline */
+    font-family: Arial, Helvetica, sans-serif; /* Font family */
+    font-size: 18px; /* Font size */
+    margin-bottom: 10px; /* Add margin between links */
+    margin-left: 8px;
+}
+
+.admin-home-sidemenu a:hover {
+    color: rgb(236, 234, 234); /* Change color on hover */
+    text-decoration: none; /* Remove underline */
+}
+
+.admin-content {
+    display: flex;
+}
+
+.admin-left-content {
+    flex: .18;
+    padding: 20px;
+    margin-top: 3.8%;
+    margin-left: 3.3%;
+}
+
+.admin-right-content {
+    position: relative;
+    flex: 1;
+    padding: 20px;
+    margin-top: 1%;
+    overflow-y: auto; /* Added this line */
+    max-height: calc(100vh - 120px); /* Adjust this value to fit your layout, accounting for any headers or footers */
+}
+
+.admin-dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #d3d3d3;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.admin-form-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px; /* Add gap between elements */
+}
+    
+.admin-form-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+    
+    
+.admin-dropdown, .admin-interchange-button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    margin: 0 10px;
+}
+    
+.addroute-dropdown{
+    flex: 3;
+    padding: 10px;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+    .admin-dropdown {
+    width: 90px;
+    border-radius: 5px;
+    }
+    
+    .admin-dropdown option{
+    padding: 10px;
+    }
+
+    .addroute-dropdown {
+        max-width: 30%;
+        border-radius: 5px;
+        }
+        
+    .addroute-dropdown option{
+        padding: 10px;
+    }
+    
+    admin-.dropdown:focus {
+    outline: none;
+    }
+    
+    .admin-interchange-button {
+    max-width: 4%;
+    background-color: #0075cb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 5px;
+    }
+    
+    .admin-interchange-button:focus {
+    outline: none;
+    }
+    
+    .admin-search-button {
+        flex: 1; /* Reduced from 2 to 1 to decrease the length */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #0075cb;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        border-radius: 5px;
+    }
+    
+    .admin-search-button:focus {
+    outline: none;
+    }
+    
+    .dropdown-selected {
+        background-color: #f9f9f9;
+        border: 1px solid #d3d3d3;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        user-select: none; /* Prevent text selection */
+        color: #666;
+    }
+.addroute-date{
+    border-radius: 5px;
+    border: 1px solid #666;
+    height: 40px;
+    width: 100px;
+}
+
+.addroute-search-button {
+    flex: 2;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0075cb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px;
+    }
+
+.admin-no-route-container {
+    position: relative;
+    left: 35%;
+}
+
+.admin-route_details {
+    display: flex;
+    width: 93%;
+    margin: 20px auto;
+    overflow-x: auto;
+    border: 1px solid #f1f0f0;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(145, 144, 144, 0.3);
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+}
+
+.admin-route-info-container {
+    position: relative;
+    left: 65%;
+    width: 100%;
+}
+
+.admin-route-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.admin-route-info h5 {
+    margin: 0 10px;
+}
+
+.admin-route_details h6 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.admin-save-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #0075cb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-save-button:hover {
+    background-color: #005fa3;
+    color: white;
+}
+
+.fare-input{
+    width: 30px;
+    border-radius: 3px;
+    border: 1px solid #7f7e7e;
+}
+
+.time-input{
+    width: 30px;
+    border-radius: 3px;
+    border: 1px solid #7f7e7e;
+}
+
+.info-input-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; 
+    gap: 20px;
+}
+
+.admin-table-container {
+    width: 93%;
+    margin: 20px auto;
+    overflow-x: auto; /* For responsiveness */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+}
+
+.admin-routes-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+}
+
+.admin-routes-table th, .admin-routes-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-routes-table th {
+    background-color: #0075cb;
+    color: white;
+}
+
+.admin-routes-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.admin-book-button {
+    padding: 8px 12px;
+    color: white;
+    background-color: #0075cb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-book-button:hover {
+    background-color: #005fa3;
+    color: white;
+}
+
+.admin-table-input{
+    max-width: 40%;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #7f7e7e;
+}
+.admin-delete-button{
+    padding: 8px 12px;
+    color: white;
+    background-color: #BA2121;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-delete-button:hover {
+    background-color: #9e1414;
+    color: white;
+}
+
+.cancel-btn {
+    padding: 3px 10px;
+    border: 2px solid red;
+    color: red;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    margin: 10px 0;
+    }
+
+.approve-btn {
+    padding: 3px 10px;
+    border: 2px solid rgb(2, 189, 2);
+    color: green;
+    width: 70px;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.account-container .acc-pay-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #0075cb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 0px;
+    border-radius: 5px;
+}
+
+.account-container .acc-pay-button:hover {
+    background-color: #0260a3;
+    color: #fff;
+}
+
+.form-list{
+    margin-top: 20px;
+}
+
+.form-list input {
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.filter-container {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    float: left;
+    width: auto;
+    position: relative;
+    left: 4%;
+}
+
+.rep-button{
+    background-color: #0075cb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.rep-button:hover {
+    background-color: #005fa3;
+    color: white;
+}

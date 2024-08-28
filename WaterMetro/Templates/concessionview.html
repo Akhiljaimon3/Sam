@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .payment-success-container {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .success-icon {
+            background: #005fa3;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+        .success-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .ticket {
+            position: relative;
+            width: 400px; /* Increased width */
+            height: 460px; /* Increased height */
+            background: url("{% static 'images/concession_bill.png' %}") no-repeat center center;
+            background-size: contain;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Adjust this value to control the gap between buttons */
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background: #005fa3;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #004c87;
+        }
+
+        .ticket-email{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 13%;
+            font-size: 16px; /* Increased font size */
+            color: #a09f9f;
+        }
+
+        .ticket-fromp2{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 7%;
+            font-size: 20px; /* Increased font size */
+            color: black;
+        }
+        
+        .ticket-top1{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 20%;
+            font-size: 16px; /* Increased font size */
+            color: #a09f9f;
+        }
+
+        .ticket-top2{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 25%;
+            font-size: 20px; /* Increased font size */
+            color: black;
+        }
+
+        .ticket-amount{
+            position: absolute;
+            margin: 0px;
+            left: 10%;
+            top: 40%;
+            font-size: 35px; /* Increased font size */
+            color: black;
+        }
+
+        .ticket-date1{
+            position: absolute;
+            margin: 0px;
+            left: 10%;
+            top: 55%;
+            font-size: 16px; /* Increased font size */
+            color: #a09f9f;
+        }
+
+        .ticket-date2{
+            position: absolute;
+            margin: 0px;
+            left: 10%;
+            top: 60%;
+            font-size: 20px; /* Increased font size */
+            color: black;
+        }
+
+        .pencil-icon {
+            width: 30px;
+            position: absolute;
+            top: 5%;
+            left:2%;
+        }
+
+        .ticket-secretcode{
+            position: absolute;
+            margin: 0px;
+            left: 35%;
+            top: 71.5%;
+            font-size: 16px; /* Increased font size */
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <a href="dbchanger"><img class="pencil-icon" src="{% static 'images/back-arrow2.jpg' %}" title="Edit" alt=""></a>
+    <div class="payment-success-container">
+        <div class="ticket">
+                <p class="ticket-fromp2"><b>{{ name }}</b></p>
+                <p class="ticket-email"><b>{{ email }}</b></p>
+                <p class="ticket-top1">Plan</p>
+                <p class="ticket-top2"><b>{{ plan }}</b></p>
+                <p class="ticket-amount"><b>{{amount}}₹</b></p>
+                <p class="ticket-date1">Date</p>
+                <p class="ticket-date2"><b>{{date}}</b></p>
+                <p class="ticket-secretcode">{{secretcode}}</p>
+        </div>
+    </div>    
+</body>
+</html>

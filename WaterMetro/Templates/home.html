@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="{% static 'videos/watermetro_tourvideo.webm' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <a href="{%url 'home'%}"><img class="logo-home" src="{% static 'images/logo_watermetro.png' %}" alt="Water Metro Logo"></a>
+        <div class="menu-home">
+            <a class="menu-home-content" href="{%url 'home'%}">Home</a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            {% if request.session.U_id %}
+                <a class="menu-home-content" href="watermetro-youraccount">Your Account</a>
+            {% else %}
+                <a class="menu-home-content" href="watermetro-login">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="arrow-indicator">
+        <span class="scroll-text">scroll down</span>
+        <span class="arrow">↓</span>
+    </div>
+
+    <div class="head-home">
+        <div class="head-home-content">
+            <div class="image-wrapper">
+                <a data-fancybox="WaterMetro-360°" href="https://www.youtube.com/embed/VfiYhEJLpOs">
+                    <img src="{% static 'images/watermetro_explore.jpg' %}" alt="Explore Water Metro">
+                    <div class="overlay">
+                        <i class="fa fa-play-circle icon"></i>
+                        <h6><b>Take a 360°</b></h6>
+                        <h5><b>Virtual Tour</b></h5>
+                    </div>
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="watermetro-bookyourjourney">
+                    <img src="{% static 'images/book_your_journey.jpg' %}" alt="Book Your Journey">
+                    <div class="overlay">
+                        <i class="fa fa-ticket icon"></i>
+                        <h6><b>Book Your</b></h6>
+                        <h5><b>Journey</b></h5>
+                    </div>
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="watermetro-terminals-vytilla">
+                    <img src="{% static 'images/vypin_station.jpg' %}" alt="Vypin Station">
+                    <div class="overlay">
+                        <i class="fa fa-map-marker icon"></i>
+                        <h6><b>Explore</b></h6>
+                        <h5><b>Terminals</b></h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-maincontent">
+        <div class="left-content">
+            <h5>Kochi Water Metro</h5>
+            <h3>Kochi became India's first city to<br>have a Water Metro Project</h3>
+            <h6 style="line-height: 1.8;font-size: medium;">Kochi, Kerala has become India's first city to have a Water <br>Metro Project after the launch of its first boat in December<br>2021, namely 'Muziris,' among the 23 battery-powered electric<br>boats being manufactured by Cochin Shipyard Limited. </h6>
+            <img src="{% static 'images/home-maincontent-count.png' %}" alt="">
+        </div>
+        <div class="right-content">
+            <div class="carousel">
+                <img src="{% static 'images/banner1.png' %}" alt="Banner 1" class="active">
+                <img src="{% static 'images/banner2.png' %}" alt="Banner 2">
+                <img src="{% static 'images/banner3.png' %}" alt="Banner 3">
+                <img src="{% static 'images/banner4.png' %}" alt="Banner 4">
+            </div>            
+        </div>
+    </div>
+    <div class="wave-container">
+        <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" class="waves">
+            <g class="wave wave1">
+                <g transform-origin="287.5px 77px" style="mix-blend-mode: multiply;">
+                    <path d="M1563 8.14544C1551.67 9.57423 1540.04 11.5782 1527.87 14.1053C1507.51 18.3335 1487.15 22.5617 1466.79 23.5144C1448.1 24.3885 1426.81 20.1505 1401.7 15.1507C1370.02 8.84437 1332.25 1.32615 1285.95 1.32615C1252.88 1.32615 1224.52 6.43882 1197.21 11.3622C1155.96 18.7986 1117.1 25.8032 1068.05 14.1053C986.528 -5.33735 935.389 -4.80044 867.945 16.4625C800.502 37.7254 745.545 33.7537 700.686 24.0776C696.341 23.1405 692.04 22.1583 687.77 21.1832C670.743 17.295 654.206 13.5185 637.318 13.1501C613.648 12.5599 589.978 17.9218 566.307 23.2837C547.732 27.4913 529.157 31.6989 510.583 33.0303C487.091 34.7142 463.598 31.7567 440.106 28.7992C421.354 26.4384 402.601 24.0776 383.848 24.0776C364.334 24.0776 344.82 26.6341 325.306 29.1905C302.575 32.1683 279.844 35.1462 257.114 34.0836C236.753 33.1317 216.391 28.9073 196.03 24.6829C174.146 20.1426 152.263 15.6024 130.379 15.125C98.0649 14.3193 70.165 18.7266 42.333 23.1232C8.10901 28.5295 -26.0123 33.9196 -68.1125 29.5808C-90.8643 27.236 -112.617 23.4467 -134.08 19.7079C-185.279 10.789 -234.83 2.15706 -292.367 14.1053C-312.729 18.3335 -333.09 22.5617 -353.451 23.5144C-376.182 24.5779 -398.913 21.5974 -421.643 18.6169C-462.54 13.2545 -495.457 13.0608 -536.444 18.2253C-559.936 21.1855 -583.428 24.1456 -606.921 22.4602C-625.495 21.1276 -644.07 16.9162 -662.644 12.7049C-713.69 1.13146 -746.993 1.09298 -797.023 13.4995C-801.629 14.6418 -806.412 15.9191 -811.294 17.2229C-828.798 21.8976 -847.58 26.9135 -864.096 27.2741C-989.46 27.2741 -989.423 29.0645 -987.639 114.567C-987.398 126.117 -987.125 139.194 -987.125 154L1563 154V8.14544Z" fill="#93DCEC"></path>
+                </g>
+            </g>
+            <g class="wave wave2">
+                <g transform-origin="370px 77px" style="mix-blend-mode: multiply;">
+                    <path d="M1563 8.14544C1552.4 9.57423 1541.52 11.5782 1530.14 14.1053C1511.1 18.3335 1492.05 22.5617 1473.01 23.5144C1455.54 24.3885 1435.62 20.1505 1412.13 15.1507C1382.5 8.84437 1347.17 1.32615 1303.87 1.32615C1272.94 1.32615 1246.41 6.43882 1220.87 11.3622C1182.29 18.7986 1145.94 25.8032 1100.07 14.1053C1023.81 -5.33735 975.983 -4.80044 912.902 16.4625C849.821 37.7254 798.419 33.7537 756.461 24.0776C752.397 23.1405 748.374 22.1583 744.38 21.1832C728.455 17.295 712.987 13.5185 697.192 13.1501C675.053 12.5599 652.913 17.9218 630.774 23.2837C613.4 27.4913 596.027 31.6989 578.654 33.0303C556.681 34.7142 534.708 31.7567 512.735 28.7992C495.196 26.4384 477.656 24.0776 460.116 24.0776C441.865 24.0776 423.613 26.6341 405.361 29.1905C384.1 32.1683 362.84 35.1462 341.579 34.0836C322.535 33.1317 303.491 28.9073 284.446 24.6829C263.978 20.1426 243.51 15.6024 223.042 15.125C192.818 14.3193 166.722 18.7266 140.691 23.1232C108.68 28.5295 76.7658 33.9196 37.3887 29.5808C16.1085 27.236 -4.23694 23.4467 -24.3116 19.7079C-72.199 10.789 -118.545 2.15706 -172.361 14.1053C-191.405 18.3335 -210.45 22.5617 -229.494 23.5144C-250.755 24.5779 -272.015 21.5974 -293.276 18.6169C-331.527 13.2545 -362.315 13.0608 -400.651 18.2253C-422.623 21.1855 -444.596 24.1456 -466.569 22.4602C-483.942 21.1276 -501.315 16.9162 -518.688 12.7049C-566.432 1.13146 -597.582 1.09298 -644.375 13.4995C-648.684 14.6418 -653.157 15.9191 -657.723 17.2229C-674.095 21.8976 -691.662 26.9135 -706.029 27.2741C-812.422 27.2741 -812.389 29.0645 -810.837 114.567C-810.629 126.117 -810.397 139.194 -810.397 154L1563 154V8.14544Z" fill="#74D7E4"></path>
+                </g>
+            </g>
+            <g class="wave wave3">
+                <g transform-origin="592.5px 77px" style="mix-blend-mode: multiply;">
+                    <path d="M1563 8.14544C1553.83 9.57423 1544.25 11.5782 1533.98 14.1053C1516.34 18.3335 1498.71 22.5617 1481.08 23.5144C1464.9 24.3885 1446.21 20.1505 1423.36 15.1507C1394.97 8.84437 1361.99 1.32615 1320.7 1.32615C1290.63 1.32615 1265.17 6.43882 1240.62 11.3622C1203.57 18.7986 1168.79 25.8032 1124.1 14.1053C1050.35 -5.33735 1003.1 -4.80044 942.267 16.4625C881.435 37.7254 832.199 33.7537 791.906 24.0776C787.874 23.1405 783.867 22.1583 779.894 21.1832C765.438 17.295 751.524 13.5185 737.17 13.1501C715.942 12.5599 694.715 17.9218 673.488 23.2837C657.094 27.4913 640.701 31.6989 624.307 33.0303C603.316 34.7142 582.325 31.7567 561.334 28.7992C544.623 26.4384 527.912 24.0776 511.201 24.0776C493.813 24.0776 476.425 26.6341 459.037 29.1905C438.163 32.1683 417.288 35.1462 396.414 34.0836C378.917 33.1317 361.421 28.9073 343.924 24.6829C324.33 20.1426 304.735 15.6024 285.141 15.125C246.094 14.3193 212.759 18.7266 179.276 23.1232C138.059 28.5295 96.8419 33.9196 49.1878 29.5808C24.2697 27.236 -0.648422 23.4467 -25.1794 19.7079C-73.763 10.789 -120.968 2.15706 -176.451 14.1053C-195.678 18.3335 -214.905 22.5617 -234.131 23.5144C-255.198 24.5779 -276.265 21.5974 -297.332 18.6169C-335.185 13.2545 -364.682 13.0608 -401.872 18.2253C-423.845 21.1855 -445.818 24.1456 -467.791 22.4602C-485.165 21.1276 -502.539 16.9162 -519.912 12.7049C-566.888 1.13146 -598.192 1.09298 -644.256 13.4995C-648.221 14.6418 -652.302 15.9191 -656.503 17.2229C-672.62 21.8976 -689.891 26.9135 -704.028 27.2741C-806.826 27.2741 -806.793 29.0645 -805.388 114.567C-805.218 126.117 -805.015 139.194 -805.015 154L1563 154V8.14544Z" fill="#58CFEA"></path>
+                </g>
+            </g>
+            <g class="wave wave4">
+                <g transform-origin="835.5px 77px" style="mix-blend-mode: multiply;">
+                    <path d="M1563 8.14544C1556.22 9.57423 1549.19 11.5782 1541.82 14.1053C1527.08 18.3335 1512.34 22.5617 1497.61 23.5144C1484.26 24.3885 1468.18 20.1505 1448.59 15.1507C1424.57 8.84437 1396.11 1.32615 1359.45 1.32615C1333.34 1.32615 1310.58 6.43882 1288.57 11.3622C1256.14 18.7986 1225.95 25.8032 1184.96 14.1053C1125.82 -5.33735 1081.82 -4.80044 1025.63 16.4625C969.433 37.7254 924.447 33.7537 888.298 24.0776C884.512 23.1405 880.758 22.1583 877.029 21.1832C864.583 17.295 852.231 13.5185 839.255 13.1501C819.16 12.5599 799.065 17.9218 778.97 23.2837C764.544 27.4913 750.118 31.6989 735.693 33.0303C716.542 34.7142 697.392 31.7567 678.242 28.7992C662.591 26.4384 646.941 24.0776 631.29 24.0776C614.761 24.0776 598.232 26.6341 581.703 29.1905C561.732 32.1683 541.761 35.1462 521.79 34.0836C504.693 33.1317 487.596 28.9073 470.499 24.6829C451.339 20.1426 432.178 15.6024 413.018 15.125C376.853 14.3193 345.342 18.7266 313.576 23.1232C276.891 28.5295 240.206 33.9196 191.088 29.5808C166.476 27.236 141.865 23.4467 117.009 19.7079C-10.0866 10.789 -129.175 2.15706 -156.534 14.1053C-175.695 18.3335 -194.857 22.5617 -214.018 23.5144C-234.703 24.5779 -255.388 21.5974 -276.073 18.6169C-313.537 13.2545 -342.124 13.0608 -378.673 18.2253C-399.823 21.1855 -420.973 24.1456 -442.123 22.4602C-459.497 21.1276 -476.871 16.9162 -494.245 12.7049C-540.924 1.13146 -571.185 1.09298 -617.69 13.4995C-621.359 14.6418 -625.202 15.9191 -629.137 17.2229C-644.144 21.8976 -660.2 26.9135 -673.966 27.2741C-770.244 27.2741 -770.211 29.0645 -768.964 114.567C-768.844 126.117 -768.701 139.194 -768.701 154L1563 154V8.14544Z" fill="#2EB9E2"></path>
+                </g>
+            </g>
+        </svg>
+    </div><br>
+    <div class="main-container">
+        <div class="water-metro-section">
+            <div class="ripple"></div>
+            <div class="typing-container">
+                <div class="typing-text"></div>
+            </div>
+            <p><span class="sustainable">Sustainable, </span><span class="ecofriendly">Eco-friendly</span> and Efficient mode of transportation to the people of Kochi by connecting various parts of the city through waterways.</p>
+            <p>The Kochi Water Metro is an innovative and sustainable mode of transportation that connects various parts of the city through its intricate network of waterways. The project aims to reduce traffic congestion and improve the connectivity of the city while promoting eco-friendly means of transportation.</p>
+            <a href="watermetro-aboutus" class="button">Know More</a>
+        </div>
+    </div><br>
+    <div class="home-seperator"></div><br>
+
+    <h2 style="font-weight: 600;position: relative;left: 20px;">Explore<span style="font-weight: 600;color: #0075cb;"> Kochi</span></h2>
+    <p style="font-size: 18px;position: relative;left: 20px;">Places to see, ways to wander, and signature experiences.</p>
+    <div class="tourspots-main-container">
+        <div class="item">
+            <img src="{% static 'images/fishing_nets.jpeg' %}" alt="">
+            <p class="txt tour-spots-h1">Fort Kochi</p>
+            <p class="txt tour-spots-h2"><b>Chinese Fishing Nets</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/cbR2HMGYgaqNKAry6" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/bolgatty_marina.j' %}pg" alt="">
+            <p class="txt tour-spots-h1">Bolgatty</p>
+            <p class="txt tour-spots-h2"><b>Bolgatty Marina</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/j5gX5i1RQHhnHg118" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/forane_church.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Edapally</p>
+            <p class="txt tour-spots-h2"><b>St. George Forane Church</b></p>
+            <p class="txt tour-spots-h3">Edapally</p>
+            <a href="https://goo.gl/maps/cDAoyzRrzbzmgDbG6" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/keralafolklore.jp' %}g" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Folklore Museum</b></p>
+            <p class="txt tour-spots-h3">Museum</p>
+            <a href="https://goo.gl/maps/yNQEzVNL4VUnC3rp8" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/csez.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kakkanad</p>
+            <p class="txt tour-spots-h2"><b>Cochin Special Economic Zone</b></p>
+            <p class="txt tour-spots-h3">Economic Zone</p>
+            <a href="https://goo.gl/maps/BbDG2Z88z4ZDQQ5m6" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/mattanchery.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Mattancherry</b></p>
+            <p class="txt tour-spots-h3">Iconic Place</p>
+            <a href="https://goo.gl/maps/ozVZPZH8QfgwwU4K9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/wonderla.jpeg' %}" alt="">
+            <p class="txt tour-spots-h1">Pallikkara</p>
+            <p class="txt tour-spots-h2"><b>Wonderla</b></p>
+            <p class="txt tour-spots-h3">Amusement Parks</p>
+            <a href="https://goo.gl/maps/b1kdRUZQ4tPmMouF7" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/cherai.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Vypin Island</p>
+            <p class="txt tour-spots-h2"><b>Cherai Beach</b></p>
+            <p class="txt tour-spots-h3">Beach</p>
+            <a href="https://goo.gl/maps/8kwMpcB13q4jF5S98" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/highcourt.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Marine Drive</p>
+            <p class="txt tour-spots-h2"><b>Kerala High Court</b></p>
+            <p class="txt tour-spots-h3">Court</p>
+            <a href="https://goo.gl/maps/Ttgx36HedCy6NpJS6" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/synagogue.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Vypin</p>
+            <p class="txt tour-spots-h2"><b>Chendamangalam Synagogue</b></p>
+            <p class="txt tour-spots-h3">Synagogue</p>
+            <a href="https://goo.gl/maps/eKGXceC5NUwQgVos9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/mangalavanam.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Mangalavanam Bird Sanctuary</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/4g2SxRGo1Ershotq9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/kadambrayar.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Kadambrayar Eco Tourism</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/hybNd38eAzLTWvW7A" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/bolgatty.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Bolgatty Island Resort</b></p>
+            <p class="txt tour-spots-h3">Resort</p>
+            <a href="https://goo.gl/maps/3ALaNmUZQRnR9mTo9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/marinekochi.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Fort Kochi</p>
+            <p class="txt tour-spots-h2"><b>Marine Drive</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/SZSYjKw88cUJ7sSeA" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/mobilityhub.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Vyttila</p>
+            <p class="txt tour-spots-h2"><b>Vyttila Mobility Hub</b></p>
+            <p class="txt tour-spots-h3">Hub</p>
+            <a href="https://goo.gl/maps/BRzeEYSb5JfsPsSY9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/puthuvype.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Puthuvype</p>
+            <p class="txt tour-spots-h2"><b>Puthuvype Lighthouse</b></p>
+            <p class="txt tour-spots-h3">Lighthouse</p>
+            <a href="https://goo.gl/maps/qmu3LMVmjTMPqEB79" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/broadway.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Marine Drive</p>
+            <p class="txt tour-spots-h2"><b>Broadway Market</b></p>
+            <p class="txt tour-spots-h3">Market</p>
+            <a href="https://goo.gl/maps/K6FCzXWuDB32bstJ7" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/lulumall_cochin.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Edapally</p>
+            <p class="txt tour-spots-h2"><b>Lulu Mall</b></p>
+            <p class="txt tour-spots-h3">Shopping Mall</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/bolgatty_palace.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Bolgatty</p>
+            <p class="txt tour-spots-h2"><b>Bolgatty Palace</b></p>
+            <p class="txt tour-spots-h3">Palace</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/fortkochi.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Fort Kochi</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/hillpalace.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Thrippunithura</p>
+            <p class="txt tour-spots-h2"><b>Hill Palace Museum</b></p>
+            <p class="txt tour-spots-h3">Museum</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/info_park.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kakkanad</p>
+            <p class="txt tour-spots-h2"><b>Kakkanad Info Park</b></p>
+            <p class="txt tour-spots-h3">Largest IT park in Kerala.</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/kuzhupillybeach.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Vypin</p>
+            <p class="txt tour-spots-h2"><b>Kuzhupilly Beach</b></p>
+            <p class="txt tour-spots-h3">Beach</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/rainbowbridge.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Marine Drive</p>
+            <p class="txt tour-spots-h2"><b>Rainbow bridge</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+    </div>
+    {% if message %}
+        <div class="notification">
+            {{ message }}
+            <button class="close-btn" onclick="closeNotification()">×</button>
+        </div>
+    {% endif %}
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png' %}"><br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="https://www.facebook.com/KochiWaterMetro"><i class="fa fa-facebook"></i></a>
+                <a href="https://instagram.com/kochiwatermetrolimited"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:customercare@watermetro.co.in"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="{% url 'home'%}">Home</a></p>
+            <p><a href="watermetro-terminals-vytilla">Terminals</a></p>
+            <p><a href="watermetro-bookyourjourney">Book Your Journey</a</p>
+            <p><a href="watermetro-aboutus">About Us</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484-2846700">0484-2846700</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+    <script>
+        function closeNotification() {
+            var notification = document.querySelector('.notification');
+            if (notification) {
+                notification.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

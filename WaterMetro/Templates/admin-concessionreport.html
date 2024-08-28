@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 100%; height: 100px;">
+        <a href="adminhome"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="admin-home-menu">
+            <p>Welcome, ADMIN</p>
+            <a class="menu-home-content" href="logout">Logout</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div>
+    <div class="admin-content">
+        <div class="admin-left-content">
+            <div class="admin-home-sidemenu">
+                <a href="addroute">Add Routes</a>
+                <a href="editroute">Edit Routes</a>
+                <a href="deleteroute">Delete Routes</a>
+                <a href="bookingreport">Booking Reports</a>
+                <a href="concessionrequests">Concession Requests</a>
+                <a href="concessiondiscount">Concession Discount</a>
+                <a href="concessionreport">Concession Reports</a> 
+             </div>
+        </div>
+        <div class="admin-right-content">
+            <h3 style="color: #00adac;text-align: center;">Concession Report</h3>
+
+            <div class="filter-container">
+                <form method="get">
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" name="date" value="{{ selected_date|date:'Y-m-d' }}">
+                    <input type="submit" class="rep-button" value="Filter">
+                    <a href="concessionreport"><img src="{% static 'images/refresh.jfif'%}" alt="" style="height: 30px;"></a>
+                </form>
+            </div>
+            <div class="table-container">
+                    <table class="routes-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Plan</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for t in tab %}
+                            <form action="watermetro-ticketpayment" method="post">
+                                {% csrf_token %}
+                                <tr>
+                                <td>{{ t.name }}</td>
+                                <td>{{ t.email }}</td>
+                                <td>{{ t.plan }}</td>
+                                <td>{{ t.date }}</td>
+                                <td>{{ t.amount }}</td>       
+                            </tr>
+                            </form>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: right;"><strong>Total Number of Concessions:  {{ total_journeys }}</strong></td>
+                                <td colspan="2" style="text-align: center;"><strong>Total Amount:  {{ total_amount }}</strong></td>
+                            </tr>
+                            <tr>
+                                
+                            </tr>
+                        </tfoot>
+                    </table>    
+            </div>
+
+            <!-- Pagination Controls -->
+            <div style="text-align: center; margin-top: 20px;">
+                <span class="page-links">
+                    {% if tab.has_previous %}
+                        <a href="?page=1{% if selected_date %}&date={{ selected_date }}{% endif %}">First</a>
+                        <a href="?page={{ tab.previous_page_number }}{% if selected_date %}&date={{ selected_date }}{% endif %}">Previous</a>
+                    {% endif %}
+
+                    {% if tab.has_next %}
+                        <a href="?page={{ tab.next_page_number }}{% if selected_date %}&date={{ selected_date }}{% endif %}">Next</a>
+                        <a href="?page={{ tab.paginator.num_pages }}{% if selected_date %}&date={{ selected_date }}{% endif %}">Last</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+</body>
+</html>

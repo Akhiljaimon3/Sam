@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div style="width: 100%;height: 100px;">
+        <a href="{% url 'home'%}"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="menu-home-whitebg">
+            <a class="menu-home-content" href="{% url 'home'%}">Home</a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            {% if request.session.U_id %}
+                <a class="menu-home-content" href="youraccount">Your Account</a>
+            {% else %}
+                <a class="menu-home-content" href="login">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="head-home">
+        <div class="head-home-content">
+            <h1>Vytilla</h1>
+            <p>Largest Mobility Hub connecting various forms of transportation</p>
+        </div>
+    </div><br>
+        <div class="terminals-main-container">
+            <a href="watermetro-terminals-vytilla">
+            <div class="terminals-item">
+                <img src="{% static 'images\vytilla_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Vytilla</b></p>
+                <p class="txt tour-spots-h3">Largest Mobility Hub connecting various<br>forms of transportation</p>
+            </div></a>
+            <a href="watermetro-terminals-highcourt">
+            <div class="terminals-item">
+                <img src="{% static 'images/highcourt_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>HighCourt</b></p>
+                <p class="txt tour-spots-h3">The High Court facilitates the needs of the<br>people, with a neutral outlook through law a..</p>
+            </div></a>
+            <a href="watermetro-terminals-vypin">
+            <div class="terminals-item">
+                <img src="{% static 'images/vypin_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Vypin</b></p>
+                <p class="txt tour-spots-h3">Vypin is known for its beaches, lagoons, and<br>fishing villages.</p>
+            </div></a>
+            <a href="watermetro-terminals-kakkanad">
+            <div class="terminals-item">
+                <img src="{% static 'images/kakkanad_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Kakkanad</b></p>
+                <p class="txt tour-spots-h3">Kakkanad is a rapidly developing city known<br>for its IT and industrial parks</p>
+            </div></a>
+            <a href="watermetro-terminals-southchitoor">
+            <div class="terminals-item">
+                <img src="{% static 'images/South_chittoor.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>South Chittoor</b></p>
+                <p class="txt tour-spots-h3">Riverine island in the city of Kochi in Kerala</p>   
+            </div></a>
+            <a href="watermetro-terminals-chernalloor">
+            <div class="terminals-item">
+                <img src="{% static 'images/Cheranalloor.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Cheranalloor</b></p>
+                <p class="txt tour-spots-h3">Suburb of Kochi city in the state of Kerala</p> 
+            </div></a>
+            <a href="watermetro-terminals-eloor">
+            <div class="terminals-item">
+                <img src="{% static 'images/Eloor.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Eloor</b></p>
+                <p class="txt tour-spots-h3">Industrial area situated north of the Kochi city<br>centre</p> 
+            </div></a>
+            <a href="watermetro-terminals-fortkochi">
+            <div class="terminals-item">
+                <img src="{% static 'images/fort_kochi.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Fort Kochi</b></p>
+                <p class="txt tour-spots-h3">Fort Kochi is rich in heritage and culture, and is<br>a prominent tourist destination for both...</p>
+            </div></a>
+        </div><br>
+
+        <div style="position: relative;width: 88%;left: 6%;">
+            <div class="image-map-container">
+            <img class="image" src="{% static 'images\vytilla_station.jpg'%}" alt=""><div class="map" id="map"></div>
+            </div><br>
+            <p style="font-size: 16px;font-weight: 400;text-align:justify;">The name Vyttila is said to be evolved from the word “Vayal Thala” meaning the main part of the paddy field. Once the area including Elamkulam, were paddy fields and paddy cultivation was the main source of income. The paddy field existed from Ernakulam, Girinagar, Panampilly Nagar, Gandhi Nagar, Jawahar Nagar, Kumarananshan Nagar and extended to Kaniyampuzha and Panamkutyy bridge. Some also say that once there existed a bunch of dacoits, who murdered and looted the travelers, hence the name Vytilla evolved from ‘Vazhithala’. Now, Vytilla has evolved into the busiest as well as one of the largest intersections in Kerala, the most important industrial area of Kerala. Vytilla, as the name suggests, was the center of agriculture famous for paddy fields, and has now evolved into a center for mobility. Housing the Vytilla Mobility Hub, it is well connected to the city and other parts of Kerala. It heeds to the hustle and bustle of the city, while resting on a strong foundation of connectivity. The convergence of different modes of transport is the true essence of the location making it a seamless transit experience. Vytilla enables the people of the city to reach their destinations with no hassle.</p>
+            <h2 style="font-weight: 600;position: relative;">Nearby<span style="font-weight: 600;color: #0075cb;"> Attractions</span></h2>
+            <p style="font-size: 18px;position: relative;">Places to see, ways to wander, and signature experiences.</p>        
+        </div>
+
+    <div class="tourspots-main-container">
+        <div class="item">
+            <img src="{% static 'images/lulumall_cochin.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Edapally</p>
+            <p class="txt tour-spots-h2"><b>Lulu Mall</b></p>
+            <p class="txt tour-spots-h3">Shopping Mall</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/hillpalace.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Thrippunithura</p>
+            <p class="txt tour-spots-h2"><b>Hill Palace Museum</b></p>
+            <p class="txt tour-spots-h3">Museum</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/marinekochi.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Fort Kochi</p>
+            <p class="txt tour-spots-h2"><b>Marine Drive</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/SZSYjKw88cUJ7sSeA" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/mobilityhub.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Vyttila</p>
+            <p class="txt tour-spots-h2"><b>Vyttila Mobility Hub</b></p>
+            <p class="txt tour-spots-h3">Hub</p>
+            <a href="https://goo.gl/maps/BRzeEYSb5JfsPsSY9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/fortkochi.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Fort Kochi</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+    </div>
+
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png'%}">
+        <br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="https://www.facebook.com/KochiWaterMetro"><i class="fa fa-facebook"></i></a>
+                <a href="https://instagram.com/kochiwatermetrolimited"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:customercare@watermetro.co.in"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="{% url 'home'%}">Home</a></p>
+            <p><a href="watermetro-terminals-vytilla">Terminals</a></p>
+            <p><a href="watermetro-bookyourjourney">Book Your Journey</a</p>
+            <p><a href="watermetro-aboutus">About Us</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484 - 2846700">0484 - 2846700</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+    <script>
+        var map = L.map('map').setView([9.967286660634931, 76.32244590983133], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        var marker = L.marker([9.967286660634931, 76.32244590983133]).addTo(map)
+            .bindPopup('Vytilla')
+            .openPopup();
+    </script>
+</body>
+</html>

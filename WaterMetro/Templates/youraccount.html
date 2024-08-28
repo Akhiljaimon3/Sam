@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 100%;height: 100px;">
+        <a href="{%url 'home'%}"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="menu-home-whitebg">
+            <a class="menu-home-content" href="{%url 'home'%}">Home</b></a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            <a class="menu-home-content" href="watermetro-youraccount">Your Account</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div><br>
+    <div style="position: relative;width: 90%;left: 5%;align-content: center;">
+        {% if acc == 1 %}
+        <div class="account-container">
+            {% for i in res %}
+            <form align="center" class="acc-form" action="editaccount" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="x" value="{{ i.id }}">
+                <a href="watermetro-youraccount"><img class="pencil-icon" src="{% static 'images/back-arrow.jpg' %}" title="Edit" alt=""></a>
+                <a href="logout" class="logout-button" type="button">Logout</a>
+                <div class="account-cir-3">{{ i.name|slice:":1"|upper }}</div>
+                <div style="margin: 10px;position: relative;right: 8%;">
+                    <label for="">Name : </label><input name="name" class="acc-input" type="text" value="{{ i.name }}" required><br><br>
+                    <label for="">Email : </label><input name="email" class="acc-input" type="email" value="{{ i.email }}" required>
+                </div>
+                <button class="account-save-button" type="submit">Save</button>
+            </form>
+            {% endfor %}
+        </div>
+
+        {% elif acc == 2 %}
+        <div class="account-container">
+            {% for i in res %}
+            <form align="center" class="acc-form" action="account-changepw" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="x" value="{{ i.id }}">
+                <a href="watermetro-youraccount"><img class="pencil-icon" src="{% static 'images/back-arrow.jpg' %}" title="Edit" alt=""></a>
+                <a href="logout" class="logout-button" type="button">Logout</a>
+                <a class="account-changepw" href="account-changepw"><img class="pencil-icon" src="{% static 'images/pencil-icon.png' %}" title="Edit" alt=""></a>
+                <div class="account-cir-2">{{ i.name|slice:":1"|upper }}</div>
+                <h6 style="margin-bottom: 0px;">{{ i.name }}</h6>
+                <p style="color: rgb(121, 120, 120);">{{ i.email }}</p>
+                <div><input style="margin-right: 10px;border-radius: 5px;border: 1px solid grey;" type="password" name="password" placeholder="Password.." required>
+                    <input style="border-radius: 5px;border: 1px solid grey;" type="password" name="conf-password" placeholder="Confirm Password.." required></div>
+                <button class="account-save-button" style="left: .3%;" type="submit">Save</button>
+            </form>
+            {% endfor %}
+        </div>
+
+        {% elif acc == 3 %}
+        <div class="account-container">
+            {% for i in res %}
+            <a href="editaccount"><img class="pencil-icon" src="{% static 'images/pencil-icon.png' %}" title="Edit" alt=""></a>
+            <a href="logout" class="logout-button" type="button">Logout</a>
+            <a class="account-changepw" href="account-changepw">Change Password</a>
+            <div class="account-cir">{{ i.name|slice:":1"|upper }}</div>
+            <h6 style="margin-bottom: 0px;">{{ i.name }}</h6>
+            <p style="color: rgb(121, 120, 120);margin-bottom: 0px;">{{ i.email }}</p>
+            {% if conc %}
+                <p>Your concession apllication is successfull,<a href="watermetro-concessionpayment/{{i.email}}" class="acc-pay-button">Payment</a></p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div><br>
+
+    {% if db == 1 %}
+    <a href="dbchanger" class="acc-navigator">Concession History</a>
+    <h3 style="color: #00adac;text-align: center;">Booking History</h3>
+    <div class="table-container">
+        <table class="routes-table">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tab %}
+                    {% csrf_token %}
+                    <tr>
+                    <td>{{ t.location }}</td>
+                    <td>{{ t.destination }}</td>
+                    <td>{{ t.date }}</td>
+                    <td>{{ t.amount }}</td>       
+                    <td>
+                        <form action="watermetro-ticketview" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="location" value="{{ t.location }}">
+                            <input type="hidden" name="destination" value="{{ t.destination }}">
+                            <input type="hidden" name="date" value="{{ t.date }}">
+                            <input type="hidden" name="amount" value="{{ t.amount }}">
+                            <input type="hidden" name="secretcode" value="{{ t.secretcode }}">
+                            <button type="submit" style="background: none; border: none; padding: 0;">
+                                <img src="{% static 'images/eyeview.jfif' %}" alt="View" style="height: 20px; cursor: pointer;">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% elif db == 2 %}
+        <a href="watermetro-youraccount" class="acc-navigator">Booking History</a>
+        <h3 style="color: #00adac;text-align: center;">Concession History</h3>
+        <div class="table-container">
+        <table class="routes-table">
+            <thead>
+                <tr>
+                    <th>Plan</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tab %}
+                    {% csrf_token %}
+                    <tr>
+                    <td>{{ t.plan }}</td>
+                    <td>{{ t.date }}</td>
+                    <td>{{ t.amount }}</td>
+                    <td>
+                        <form action="watermetro-concessionview" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="name" value="{{ t.name }}">
+                            <input type="hidden" name="email" value="{{ t.email }}">
+                            <input type="hidden" name="date" value="{{ t.date }}">
+                            <input type="hidden" name="amount" value="{{ t.amount }}">
+                            <input type="hidden" name="plan" value="{{ t.plan }}">
+                            <input type="hidden" name="secretcode" value="{{ t.secretcode }}">
+                            <button type="submit" style="background: none; border: none; padding: 0;">
+                                <img src="{% static 'images/eyeview.jfif' %}" alt="View" style="height: 20px; cursor: pointer;">
+                            </button>
+                        </form>
+                    </td>    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        </div>
+    <br><br><br>
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png' %}"><br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="#">Home</a></p>
+            <p><a href="#">Terminals</a></p>
+            <p><a href="#">Consultancy Services</a></p>
+            <p><a href="#">About Us</a></p>
+            <p><a href="#">Your Account</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484-2846700">0484-2846700</a></p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .payment-success-container {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .success-icon {
+            background: #005fa3;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+        .success-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .ticket {
+            position: relative;
+            width: 250px;
+            height: 290px;
+            background: url("{% static 'images/ticket_image.png' %}") no-repeat center center;
+            background-size: contain;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Adjust this value to control the gap between buttons */
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background: #005fa3;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #004c87;
+        }
+
+        .ticket-fromp1{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 5%;
+            font-size: 11px;
+            color: #a09f9f;
+        }
+
+        .ticket-fromp2{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 10%;
+            color: black;
+        }
+        
+        .ticket-top1{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 18%;
+            font-size: 11px;
+            color: #a09f9f;
+        }
+
+        .ticket-top2{
+            position: absolute;
+            margin: 0px;
+            left: 8%;
+            top: 23%;
+            color: black;
+        }
+
+        .ticket-amount{
+            position: absolute;
+            margin: 0px;
+            left: 10%;
+            top: 40%;
+            font-size: 25px;
+            color: black;
+        }
+
+        .ticket-date1{
+            position: absolute;
+            margin: 0px;
+            left: 10%;
+            top: 55%;
+            font-size: 11px;
+            color: #a09f9f;
+        }
+
+        .ticket-date2{
+            position: absolute;
+            margin: 0px;
+            left: 10%;
+            top: 60%;
+            color: black;
+        }
+        .ticket-secretcode{
+            position: absolute;
+            margin: 0px;
+            left: 35%;
+            top: 71%;
+            font-size: 12px;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-success-container">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12L11 14L15 10"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22Z"/>
+            </svg>
+        </div>
+        <h1>Payment Successful</h1>
+        <p>Thank you! Your payment has been processed successfully.</p>
+        
+        <div class="ticket">
+                <p class="ticket-fromp1">From</p>
+                <p class="ticket-fromp2"><b>{{location}}</b></p>
+                <p class="ticket-top1">To</p>
+                <p class="ticket-top2"><b>{{destination}}</b></p>
+                <p class="ticket-amount"><b>{{amount}}₹</b></p>
+                <p class="ticket-date1">To</p>
+                <p class="ticket-date2"><b>{{dates}}</b></p>
+                <p class="ticket-secretcode">{{secretcode}}</p>
+        </div>
+        
+        <div class="button-container">
+            <a href="/" class="button">Continue</a>
+        </div>
+    </div>    
+</body>
+</html>

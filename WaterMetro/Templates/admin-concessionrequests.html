@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <!-- Include FancyBox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
+    <style>
+        .admin-routes-table img {
+            width: auto; 
+            height: 50px; 
+            object-fit: cover; /* Ensure the image covers the area */
+            border-radius: 5px; /* Optional: add some rounding to match the design */
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; height: 100px;">
+        <a href="adminhome"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="admin-home-menu">
+            <p>Welcome, ADMIN</p>
+            <a class="menu-home-content" href="logout">Logout</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div>
+    <div class="admin-content">
+        <div class="admin-left-content">
+            <div class="admin-home-sidemenu">
+                <a href="addroute">Add Routes</a>
+                <a href="editroute">Edit Routes</a>
+                <a href="deleteroute">Delete Routes</a>
+                <a href="bookingreport">Booking Reports</a>
+                <a href="concessionrequests">Concession Requests</a>
+                <a href="concessiondiscount">Concession Discount</a>
+                <a href="concessionreport">Concession Reports</a> 
+             </div>
+        </div>
+        <div class="admin-right-content">
+            <h3 style="color: #00adac;text-align: center;">Concession Requests</h3>
+            <div class="admin-table-container">
+                <table class="admin-routes-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Id</th>
+                            <th>Plan</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in res %}
+                        <tr>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.email }}</td>
+                            <td>
+                                <a href="{{ i.userid.url }}" data-fancybox="gallery" data-caption="{{ i.name }}">
+                                    <img src="{{ i.userid.url }}" alt="{{ i.userid }}">
+                                </a>
+                            </td>
+                            <td>{{ i.plan }}</td>
+                            <td>
+                                <form action="concessionrequests" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="x" value="{{ i.id }}">
+                                    <input type="hidden" name="status" value="2">
+                                    <button type="submit" class="approve-btn" onclick="return confirm('Are You Sure')">Approve</button>
+                                </form>
+
+                                <form action="concessionrequests" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="x" value="{{ i.id }}">
+                                    <input type="hidden" name="status" value="3">
+                                    <button type="submit" class="cancel-btn" onclick="return confirm('Are You Sure')">Cancel</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Include jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include FancyBox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+    <script>
+        // Initialize FancyBox
+        $(document).ready(function() {
+            $("[data-fancybox]").fancybox({
+                buttons : [ 
+                    'slideShow',
+                    'share',
+                    'zoom',
+                    'fullScreen',
+                    'close'
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

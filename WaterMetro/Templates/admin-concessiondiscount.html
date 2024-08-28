@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <style>
+        /* Additional styling if needed */
+        .discount-radio {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .discount-radio label {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .form-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust spacing between items */
+        }
+        .form-controls .discountinput {
+            flex: 1; /* Make inputs flexible to use available space */
+        }
+        .form-controls .admin-search-button {
+            margin-left: 10px; /* Space between input fields and button */
+        }
+        .discount-inputs {
+            display: flex;
+            flex-direction: column;
+        }
+        table {
+            width: 80%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden; /* Ensure border-radius is visible */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+            text-align: center; /* Center-align all values */
+        }
+        th {
+            background-color: #0075cb; /* Header background color */
+            color: white; /* Header text color for contrast */
+        }
+        /* Zebra stripe effect */
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray */
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #fff; /* White */
+        }
+        /* Optional: Add hover effect for rows */
+    </style>
+</head>
+<body>
+    <div style="width: 100%; height: 100px;">
+        <a href="adminhome"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="admin-home-menu">
+            <p>Welcome, ADMIN</p>
+            <a class="menu-home-content" href="logout">Logout</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div>
+    <div class="admin-content">
+        <div class="admin-left-content">
+            <div class="admin-home-sidemenu">
+                <a href="addroute">Add Routes</a>
+                <a href="editroute">Edit Routes</a>
+                <a href="deleteroute">Delete Routes</a>
+                <a href="bookingreport">Booking Reports</a>
+                <a href="concessionrequests">Concession Requests</a>
+                <a href="concessiondiscount">Concession Discount</a>
+                <a href="concessionreport">Concession Reports</a>
+            </div>
+        </div>
+        <div class="admin-right-content">
+            <h3 style="color: #00adac; text-align: center;">Add Discount</h3>
+            <form action="concessiondiscount" method="post">
+                {% csrf_token %}
+                <div class="admin-home-content">
+                    <div class="admin-dropdown-container">
+                        <div class="admin-form-controls">
+                            <select name="plan" class="dropdown" required style="margin-top: 3.5%;">
+                                <option value="">Select your plan</option>
+                                <option value="1/50">1 Day Unlimited / 50 Rs</option>
+                                <option value="45/495">45 Days 50 Rides / 495 Rs</option>
+                                <option value="30/750">30 Days Unlimited / 750 Rs</option>
+                            </select>
+                            <input type="text" style="margin-top: 3.5%;" class="discountinput" placeholder="Discount Name" name="discountname" required>
+                            <!-- Radio buttons for discount type -->
+                            <div>
+                                <div class="discount-radio">
+                                    <label>
+                                        <input type="radio" name="discount_type" value="amount" checked> Amount
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="discount_type" value="percentage"> Percentage
+                                    </label>
+                                </div>
+                                <!-- Input fields for amount and percentage -->
+                                <div class="discount-inputs">
+                                    <input type="number" class="discountinput" id="discountamount" placeholder="Discount Amount" name="discountamount">
+                                    <input type="number" class="discountinput" id="discountpercentage" placeholder="Discount Percentage" name="discountpercentage" style="display:none;">
+                                </div>
+                            </div>
+                            <button type="submit" style="margin-top: 3.5%;" class="admin-search-button" onclick="return confirm('Are You Sure')">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <!-- Table to display discount data -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Discount Name</th>
+                        <th>Discount Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in res %}
+                    <tr>
+                        <td>{{i.plan}}</td>
+                        <td>{{i.discount_name}}</td>
+                        <td>{{i.discount_amount}}</td>
+                        <td>
+                            <form action="deletediscount" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="x" value="{{ i.id }}">
+                                <button type="submit" class="admin-delete-button" onclick="return confirm('Are You Sure')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+</body>
+</html>

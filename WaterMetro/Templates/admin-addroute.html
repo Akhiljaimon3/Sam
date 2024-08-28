@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 100%; height: 100px;">
+        <a href="adminhome"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="admin-home-menu">
+            <p>Welcome, ADMIN</p>
+            <a class="menu-home-content" href="logout">Logout</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div>
+    <div class="admin-content">
+        <div class="admin-left-content">
+            <div class="admin-home-sidemenu">
+                <a href="addroute">Add Routes</a>
+                <a href="editroute">Edit Routes</a>
+                <a href="deleteroute">Delete Routes</a>
+                <a href="bookingreport">Booking Reports</a>
+                <a href="concessionrequests">Concession Requests</a>
+                <a href="concessiondiscount">Concession Discount</a>
+                <a href="concessionreport">Concession Reports</a> 
+             </div>
+        </div>
+        <div class="admin-right-content">
+            <h3 style="color: #00adac;text-align: center;">Add Routes</h3>
+            <form action="addroute" method="post">
+                {% csrf_token %}
+                <div class="admin-home-content">
+                    <div class="admin-dropdown-container">
+                        <div class="admin-form-controls">
+                            <select name="location" class="addroute-dropdown" required>
+                                <option value="">Select your location</option>
+                                <option value="Vytilla">Vytilla</option>
+                                <option value="HighCourt">HighCourt</option>
+                                <option value="Vypin">Vypin</option>
+                                <option value="Kakkanad">Kakkanad</option>
+                                <option value="Bolgatty">Bolgatty</option>
+                                <option value="SouthChittoor">South Chittoor</option>
+                                <option value="Chernalloor">Chernalloor</option>
+                                <option value="Eloor">Eloor</option>
+                                <option value="FortKochi">Fort Kochi</option>
+                            </select>
+                            <select name="destination" class="addroute-dropdown" required>
+                                <option value="">Select your destination</option>
+                                <option value="Vytilla">Vytilla</option>
+                                <option value="HighCourt">HighCourt</option>
+                                <option value="Vypin">Vypin</option>
+                                <option value="Kakkanad">Kakkanad</option>
+                                <option value="Bolgatty">Bolgatty</option>
+                                <option value="SouthChittoor">South Chittoor</option>
+                                <option value="Chernalloor">Chernalloor</option>
+                                <option value="Eloor">Eloor</option>
+                                <option value="FortKochi">Fort Kochi</option>
+                            </select>
+                            <input type="time" name="departure" class="addroute-date" required>
+                            <input type="time" name="arrival" class="addroute-date" required>
+                            <button type="submit" class="addroute-search-button" onclick="return confirm('Are You Sure')">Save</button>
+                        </div><br>
+                    </div>
+                </div>
+            </form><br>
+        </div>
+</body>
+</html>

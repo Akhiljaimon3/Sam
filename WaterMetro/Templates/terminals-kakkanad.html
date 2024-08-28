@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div style="width: 100%;height: 100px;">
+        <a href="{% url 'home'%}"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="menu-home-whitebg">
+            <a class="menu-home-content" href="{% url 'home'%}">Home</a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            {% if request.session.U_id %}
+                <a class="menu-home-content" href="youraccount">Your Account</a>
+            {% else %}
+                <a class="menu-home-content" href="login">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="head-home">
+        <div class="head-home-content">
+            <h1>Kakkanad</h1>
+            <p>Kakkanad is a rapidly developing city known for its IT and industrial parks</p>
+        </div>
+    </div><br>
+        <div class="terminals-main-container">
+            <a href="watermetro-terminals-vytilla">
+            <div class="terminals-item">
+                <img src="{% static 'images\vytilla_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Vytilla</b></p>
+                <p class="txt tour-spots-h3">Largest Mobility Hub connecting various<br>forms of transportation</p>
+            </div></a>
+            <a href="watermetro-terminals-highcourt">
+            <div class="terminals-item">
+                <img src="{% static 'images/highcourt_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>HighCourt</b></p>
+                <p class="txt tour-spots-h3">The High Court facilitates the needs of the<br>people, with a neutral outlook through law a..</p>
+            </div></a>
+            <a href="watermetro-terminals-vypin">
+            <div class="terminals-item">
+                <img src="{% static 'images/vypin_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Vypin</b></p>
+                <p class="txt tour-spots-h3">Vypin is known for its beaches, lagoons, and<br>fishing villages.</p>
+            </div></a>
+            <a href="watermetro-terminals-kakkanad">
+            <div class="terminals-item">
+                <img src="{% static 'images/kakkanad_station.jpg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Kakkanad</b></p>
+                <p class="txt tour-spots-h3">Kakkanad is a rapidly developing city known<br>for its IT and industrial parks</p>
+            </div></a>
+            <a href="watermetro-terminals-southchitoor">
+            <div class="terminals-item">
+                <img src="{% static 'images/South_chittoor.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>South Chittoor</b></p>
+                <p class="txt tour-spots-h3">Riverine island in the city of Kochi in Kerala</p>   
+            </div></a>
+            <a href="watermetro-terminals-chernalloor">
+            <div class="terminals-item">
+                <img src="{% static 'images/Cheranalloor.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Cheranalloor</b></p>
+                <p class="txt tour-spots-h3">Suburb of Kochi city in the state of Kerala</p> 
+            </div></a>
+            <a href="watermetro-terminals-eloor">
+            <div class="terminals-item">
+                <img src="{% static 'images/Eloor.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Eloor</b></p>
+                <p class="txt tour-spots-h3">Industrial area situated north of the Kochi city<br>centre</p> 
+            </div></a>
+            <a href="watermetro-terminals-fortkochi">
+            <div class="terminals-item">
+                <img src="{% static 'images/fort_kochi.jpeg'%}" alt="">
+                <p class="txt tour-spots-h2"><b>Fort Kochi</b></p>
+                <p class="txt tour-spots-h3">Fort Kochi is rich in heritage and culture, and is<br>a prominent tourist destination for both...</p>
+            </div></a>
+        </div><br>
+
+        <div style="position: relative;width: 88%;left: 6%;">
+            <div class="image-map-container">
+            <img class="image" src="{% static 'images\kakkanad_station.jpg'%}" alt=""><div class="map" id="map"></div>
+            </div><br>
+            <p style="font-size: 16px;font-weight: 400;text-align:justify;">Kakkanad is located near Thrikkakara, the capital of the mythical King Mahabali. The old name of Kakkanad is Kakkanad-Thrikkakara. Bali succeeded Virochana as the king of the Asuras, and his reign over the realm was characterized by peace and prosperity. It is especially notable for its significance in the festival of Onam, and in the tale associated with it linked to the famous Thrikkakara temple. Kakkanad traces it’s history back to the rule of King Mahabali, under who’s rule everyone was equal and prospered. This is true for Kakkanad even today. Being the IT hub of Kochi, it has contributed to the economic progress and development of the city. With young energetic crowd that aspires for a modern lifestyle, Kakkanad is an upcoming hot spot for modern cafés and cosmopolitan culture. Despite the abundance of high rise buildings, the lush green landscape around provides an escape from the monotony of IT life.</p>
+            <h2 style="font-weight: 600;position: relative;">Nearby<span style="font-weight: 600;color: #0075cb;"> Attractions</span></h2>
+            <p style="font-size: 18px;position: relative;">Places to see, ways to wander, and signature experiences.</p>        
+        </div>
+
+    <div class="tourspots-main-container">
+        <div class="item">
+            <img src="{% static 'images/csez.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kakkanad</p>
+            <p class="txt tour-spots-h2"><b>Cochin Special Economic Zone</b></p>
+            <p class="txt tour-spots-h3">Economic Zone</p>
+            <a href="https://goo.gl/maps/BbDG2Z88z4ZDQQ5m6" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/mangalavanam.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Mangalavanam Bird Sanctuary</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/4g2SxRGo1Ershotq9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/kadambrayar.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kochi</p>
+            <p class="txt tour-spots-h2"><b>Kadambrayar Eco Tourism</b></p>
+            <p class="txt tour-spots-h3">Tourist Attraction</p>
+            <a href="https://goo.gl/maps/hybNd38eAzLTWvW7A" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/hillpalace.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Thrippunithura</p>
+            <p class="txt tour-spots-h2"><b>Hill Palace Museum</b></p>
+            <p class="txt tour-spots-h3">Museum</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+        <div class="item">
+            <img src="{% static 'images/info_park.jpg' %}" alt="">
+            <p class="txt tour-spots-h1">Kakkanad</p>
+            <p class="txt tour-spots-h2"><b>Kakkanad Info Park</b></p>
+            <p class="txt tour-spots-h3">Largest IT park in Kerala.</p>
+            <a href="https://goo.gl/maps/eeCBZmVeWEXyTMAH9" class="direction-button" target="_blank">Get Directions</a>
+        </div>
+    </div>
+
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png'%}">
+        <br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="https://www.facebook.com/KochiWaterMetro"><i class="fa fa-facebook"></i></a>
+                <a href="https://instagram.com/kochiwatermetrolimited"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:customercare@watermetro.co.in"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="{% url 'home'%}">Home</a></p>
+            <p><a href="watermetro-terminals-vytilla">Terminals</a></p>
+            <p><a href="watermetro-bookyourjourney">Book Your Journey</a</p>
+            <p><a href="watermetro-aboutus">About Us</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484 - 2846700">0484 - 2846700</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+    <script>
+        // Initialize the map and set its view
+        var map = L.map('map').setView([9.992726476073978, 76.35176754975156], 10);
+
+        // Load and display tile layers on the map (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker at the specified location
+        var marker = L.marker([9.992726476073978, 76.35176754975156]).addTo(map)
+            .bindPopup('Kakkanad')
+            .openPopup();
+    </script>
+</body>
+</html>

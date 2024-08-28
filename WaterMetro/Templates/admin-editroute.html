@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <style>
+        table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+}
+    
+    th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+    th {
+    background-color: #0075cb;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <div style="width: 100%; height: 100px;">
+        <a href="adminhome"><img class="logo-home" src="{% static 'images/logo_watermetro.png'%}"></a>
+        <div class="admin-home-menu">
+            <p>Welcome, ADMIN</p>
+            <a class="menu-home-content" href="logout">Logout</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div>
+    <div class="admin-content">
+        <div class="admin-left-content">
+            <div class="admin-home-sidemenu">
+                <a href="addroute">Add Routes</a>
+                <a href="editroute">Edit Routes</a>
+                <a href="deleteroute">Delete Routes</a>
+                <a href="bookingreport">Booking Reports</a>
+                <a href="concessionrequests">Concession Requests</a>
+                <a href="concessiondiscount">Concession Discount</a>
+                <a href="concessionreport">Concession Reports</a> 
+             </div>
+        </div>
+        <div class="admin-right-content">
+            <h3 style="color: #00adac;text-align: center;">Edit Routes</h3>
+            <form action="editroute" method="post">
+                {% csrf_token %}
+                <div class="admin-home-content">
+                    <div class="admin-dropdown-container">
+                        <div class="admin-form-controls">
+                            <select name="location" class="admin-dropdown">
+                                <option value="">Select your location</option>
+                                <option value="Vytilla">Vytilla</option>
+                                <option value="HighCourt">HighCourt</option>
+                                <option value="Vypin">Vypin</option>
+                                <option value="Kakkanad">Kakkanad</option>
+                                <option value="Bolgatty">Bolgatty</option>
+                                <option value="SouthChittoor">South Chittoor</option>
+                                <option value="Chernalloor">Chernalloor</option>
+                                <option value="Eloor">Eloor</option>
+                                <option value="FortKochi">Fort Kochi</option>
+                            </select>
+                            <button type="button" class="interchange-button">⇄</button>
+                            <select name="destination" class="admin-dropdown">
+                                <option value="">Select your destination</option>
+                                <option value="Vytilla">Vytilla</option>
+                                <option value="HighCourt">HighCourt</option>
+                                <option value="Vypin">Vypin</option>
+                                <option value="Kakkanad">Kakkanad</option>
+                                <option value="Bolgatty">Bolgatty</option>
+                                <option value="SouthChittoor">South Chittoor</option>
+                                <option value="Chernalloor">Chernalloor</option>
+                                <option value="Eloor">Eloor</option>
+                                <option value="FortKochi">Fort Kochi</option>
+                            </select>
+                            <button type="submit" class="admin-search-button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form><br>
+        
+            {% if no_route %}
+                <img class="admin-no-route-container" src="{% static 'images/no_routes.png'%}" alt="">
+            {% elif rout %}
+            <div class="admin-route_details">
+                <div class="admin-left-route_details">
+                    {% for d in detail %}
+                    <form action="editroutelist" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="x" value="{{ d.id }}">
+                        <div class="admin-route-info-container">
+                            <div class="admin-route-info">
+                                <h5 class="location">{{ d.location }}</h5>
+                                <img class="admin-route-separator" src="{% static 'images/route-seperator.png' %}" alt="">
+                                <h5 class="admin-destination">{{ d.destination }}</h5>
+                            </div>
+                            <div class="info-input-container">
+                                <h6>Time Taken For Journey: <input class="time-input" name="travel_time" type="text" value="{{ d.travel_time }}" required> Minutes</h6>
+                                <h6>Fare: <input class="fare-input" name="fare" type="text" value="{{ d.fare }}" required> ₹</h6>
+                            </div>
+                        </div>
+                        <button class="admin-save-button" type="submit" onclick="return confirm('Are You Sure')">Save</button>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="admin-table-container">
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Status</th>
+                            <th>Add Note</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in rout %}
+                        <form action="editroutelist" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="x" value="{{ r.id }}">
+                            <tr>
+                                <td><input type="text" name="departure" class="admin-table-input" value="{{ r.departure|date:'H:i' }}" required></td>
+                                <td><input type="text" name="Arrival" class="admin-table-input" value="{{ r.Arrival|date:'H:i' }}" required></td>
+                                <td>
+                                    <select name="status" class="admin-dropdown" required>
+                                        <option value="1" {% if r.status == 1 %}selected{% endif %}>Active</option>
+                                        <option value="2" {% if r.status == 2 %}selected{% endif %}>Late</option>
+                                        <option value="3" {% if r.status == 3 %}selected{% endif %}>Cancel</option>
+                                        <option value="4" {% if r.status == 4 %}selected{% endif %}>Inactive</option>
+                                    </select>
+                                </td>
+                                <td><input style="height:35px" type="text" name="note" placeholder="..." class="admin-table-input" value="{{ r.note|default:'' }}"></td>
+                                <td><button type="submit" class="admin-book-button" onclick="return confirm('Are You Sure')">Save</button></td>
+                            </tr>
+                        </form>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{% static 'js/myown.js' %}"></script>
+</body>
+</html>

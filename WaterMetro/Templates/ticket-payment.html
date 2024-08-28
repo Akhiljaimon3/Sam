@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Metro</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link href="{% static 'css/myown.css' %}" rel="stylesheet">
+    <link href="{% static 'css/admin.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 100%;height: 100px;">
+        <a href="{% url 'home' %}"><img class="logo-home" src="{% static 'images/logo_watermetro.png' %}"></a>
+        <div class="menu-home-whitebg">
+            <a class="menu-home-content" href="{% url 'home' %}">Home</a>
+            <a class="menu-home-content" href="watermetro-terminals-vytilla">Terminals</a>
+            <a class="menu-home-content" href="watermetro-applyforconcession">Apply for Concession</a>
+            <a class="menu-home-content" href="watermetro-bookyourjourney">Book Your Journey</a>
+            <a class="menu-home-content" href="watermetro-aboutus">About Us</a>
+            <a class="menu-home-content" href="watermetro-youraccount">Your Account</a>
+        </div>
+    </div>
+    <div class="home-seperator"></div><br>
+    <div style="position: relative;width: 50%;left: 25%;align-content: center;">
+        <div class="account-container">
+            <a href="watermetro-bookyourjourney"><img class="pencil-icon" src="{% static 'images/back-arrow.jpg' %}" title="Edit" alt=""></a>
+            {% for r in res %}
+            {% for u in user %}
+            {% for d in detail %}
+            <form align="center" class="acc-form" action="/ticketpay/{{d.fare}}" method="post">
+                {% csrf_token %}
+                <h3 style="color: #00adac;">Payment Form</h3>
+                <div class="form-list">
+                    <label for="">Name : </label>
+                    <input type="text" value="{{ u.name }}"  name="name" readonly>
+                </div>
+                <div class="form-list">
+                    <label for="">Email : </label>
+                    <input type="text" value="{{ u.email }}"  name="email" readonly>
+                </div>
+                <div class="form-list">
+                    <label for="">Location : </label>
+                    <input type="text" value="{{ r.location }}" name="location" readonly>
+                </div>
+                <div class="form-list">
+                    <label for="">Destination : </label>
+                    <input type="text" value="{{ r.destination }}" name="destination" readonly >
+                </div>
+                <div class="form-list">
+                    <label for="">Amount : </label>
+                    <input type="text" value="{{ d.fare }}"  name="amount" readonly>
+                </div>
+                <div class="form-list">
+                    <label for="">Date : </label>
+                    <input type="date" required name="date" id="myDate">
+                </div>
+                <button class="account-save-button" style="left: .3%;" type="submit">PAY NOW</button>
+            </form>            
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    <br><br><br>
+    <footer>
+        <img class="logo-home-footer" src="{% static 'images/logo_watermetro.png' %}"><br><br>
+        <div class="footer-01">
+            <p>4th Floor<br>JLN Metro Station<br>Kaloor, Cochin - 682017</p>
+            <p>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-envelope"></i></a>
+            </p>
+        </div>
+        <div class="footer-02">
+            <p class="footer-head">Quick Links</p>
+            <p><a href="#">Home</a></p>
+            <p><a href="#">Terminals</a></p>
+            <p><a href="#">Consultancy Services</a></p>
+            <p><a href="#">About Us</a></p>
+            <p><a href="#">Your Account</a></p>
+        </div>
+        <div class="footer-03">
+            <p class="footer-head">Get in Touch</p>
+            <p><a href="mailto:customercare@watermetro.co.in">customercare@watermetro.co.in</a></p>
+            <p><a href="tel:0484-2846700">0484-2846700</a></p>
+        </div>
+    </footer>
+    <script>
+        function getCurrentDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            let month = today.getMonth() + 1;
+            let day = today.getDate();
+
+            month = month < 10 ? '0' + month : month;
+            day = day < 10 ? '0' + day : day;
+
+            return `${year}-${month}-${day}`;
+        }
+
+        function getTomorrowDate() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 2);
+            const year = tomorrow.getFullYear();
+            let month = tomorrow.getMonth() + 1;
+            let day = tomorrow.getDate();
+
+            month = month < 10 ? '0' + month : month;
+            day = day < 10 ? '0' + day : day;
+
+            return `${year}-${month}-${day}`;
+        }
+
+        const today = getCurrentDate();
+        const tomorrow = getTomorrowDate();
+
+        document.getElementById('myDate').min = today;
+        document.getElementById('myDate').max = tomorrow;
+    </script>
+</body>
+</html>
